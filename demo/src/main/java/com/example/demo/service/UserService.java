@@ -1,0 +1,26 @@
+package com.example.demo.service;
+
+import com.example.demo.models.User;
+import com.example.demo.repository.UserRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+@Service
+public class UserService {
+
+    @Autowired
+    private UserRepository userRepository;
+
+    // Create User
+    public User createUser(User user) {
+        return userRepository.save(user);
+    }
+
+    // Get User by ID
+    public User getUserById(Long id) {
+        return userRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("User not found"));
+    }
+}
+
+
